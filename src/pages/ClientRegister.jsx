@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../services/api";
 import axios from "axios";             
 import './ClientRegister.css';
 
@@ -72,7 +73,7 @@ const ClientRegister = () => {
 
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/clients/register", {
+      await api.post("/clients/register", {
         nom: form.nom,
         prenom: form.prenom,
         email: form.email,
