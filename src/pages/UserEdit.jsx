@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import api from "../api";
 import { useParams, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -25,7 +26,7 @@ if (role !== "admin" && role !== "agent") {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/admin/users/${id}`);
+        const res = await api.get(`/api/admin/users/${id}`);
         setForm(res.data);
       } catch (err) {
         console.error(err);
@@ -50,7 +51,7 @@ if (role !== "admin" && role !== "agent") {
     if (!validate()) return;
 
     try {
-      await axios.put(`http://localhost:5000/api/admin/users/${id}`, form);
+      await api.put(`/api/admin/users/${id}`, form);
 
       // toast visible jusqu'au clic
       toast.success("Agent mis à jour avec succès", {
