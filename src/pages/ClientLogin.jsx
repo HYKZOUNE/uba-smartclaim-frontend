@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import api from "../services/api";
 import bg from "../assets/bg.jpg";
 import './ClientRegister.css';
 
@@ -9,17 +9,18 @@ const ClientLogin = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState("");
-  const [typeMessage, setTypeMessage] = useState(""); 
+  const [typeMessage, setTypeMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setMessage("");
     setLoading(true);
-    
 
     try {
-      const res = await axios.post("http://localhost:5000/api/clients/login", {
+      const res = await api.post("/clients/login", {
         email,
         mot_de_passe: password
       });
@@ -27,9 +28,11 @@ const ClientLogin = () => {
       localStorage.setItem("token", res.data.token);
       setTypeMessage("success");
       setMessage("Connexion réussie !");
+
       setTimeout(() => {
-        window.location.href = "/reclamation";
+        navigate("/reclamation");
       }, 1000);
+
     } catch (err) {
       setTypeMessage("error");
       setMessage(err.response?.data?.error || "Connexion impossible");
@@ -102,3 +105,24 @@ const ClientLogin = () => {
 };
 
 export default ClientLogin;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
