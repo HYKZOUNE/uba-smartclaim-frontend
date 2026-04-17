@@ -1,5 +1,6 @@
 // frontend/src/services/axiosSecure.js
 import axios from "axios";
+import api from "../api";
 
 const axiosSecure = axios.create({
   baseURL: process.env.REACT_APP_API_URL + "/api",

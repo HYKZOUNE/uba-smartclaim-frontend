@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import api from "../api";
 import axios from "axios";
 import "./auth.css";
 
@@ -9,10 +10,10 @@ export default function VerifyOTP() {
 
   const handleVerify = async () => {
     try {
-      await axios.post(
-        "http://localhost:5000/api/clients/verify-otp",
-        { email, code }
-      );
+      await api.post("/api/clients/verify-otp", {
+  email,
+  code
+});
 
       alert("✅ OTP validé !");
     } catch (err) {
