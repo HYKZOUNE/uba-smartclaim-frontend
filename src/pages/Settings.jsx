@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import api from "../api";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import LoadingCircle from '../components/LoadingCircle';
@@ -14,7 +15,7 @@ const Settings = () => {
     setLoading(true);
     setTimeout(async () => {
       try {
-        await axios.put('http://localhost:5000/api/users/change-password', {
+        await api.put('/api/users/change-password', {
           currentPassword,
           newPassword
         }, { withCredentials: true });
