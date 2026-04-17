@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../services/api';
+import api from "../api";
 import './Register.css';
 import logo from '../assets/FB_IMG_1762767457367.jpg';
 

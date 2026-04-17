@@ -1,5 +1,4 @@
 import axios from "axios";
-import api from "../api";
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL + "/api",
@@ -8,7 +7,7 @@ const api = axios.create({
   },
 });
 
-// 🔐 Intercepteur JWT (TOUTES les requêtes : GET, POST, PUT, DELETE)
+// 🔐 JWT interceptor
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
