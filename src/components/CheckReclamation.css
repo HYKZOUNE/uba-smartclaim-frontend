@@ -1,0 +1,144 @@
+.check-reclamation {
+  padding: 30px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.check-reclamation h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #8b0000;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.search-box button {
+  background: #8b0000;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.search-box button:hover {
+  opacity: 0.9;
+}
+
+/* ================= CHARGEBACK CARD ================= */
+
+.chargeback-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  border-top: 5px solid #8b0000;
+}
+
+.cb-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cb-header h3 {
+  margin: 0;
+  font-weight: 700;
+}
+
+.cb-header p {
+  margin: 5px 0 0;
+  font-size: 14px;
+}
+
+.cb-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.status {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.status.valide {
+  background: #e6f7ed;
+  color: #0a8a3a;
+}
+
+.status.attente {
+  background: #fff4e5;
+  color: #d48806;
+}
+
+.status.rejete {
+  background: #fdecea;
+  color: #b42318;
+}
+
+.cb-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 25px;
+  font-size: 14px;
+}
+
+.cb-amounts {
+  margin-top: 15px;
+  font-size: 15px;
+}
+
+.cb-amounts p {
+  margin: 6px 0;
+}
+
+.remboursable {
+  color: #0a8a3a;
+  font-size: 16px;
+}
+
+.cb-motif {
+  margin-top: 15px;
+}
+
+.cb-motif p {
+  background: #f8f8f8;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.cb-footer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.signature-line {
+  margin-top: 8px;
+  width: 200px;
+  border-bottom: 2px solid #000;
+}
+
+.error-msg {
+  text-align: center;
+  color: #b42318;
+  margin-top: 15px;
+  font-weight: 600;
+}

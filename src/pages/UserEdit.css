@@ -1,0 +1,118 @@
+/* 🌈 BACKGROUND + ANIMATION */
+.edit-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 20px;
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 📦 FORM */
+.edit-form {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 📝 TITLE */
+.edit-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* 🔥 INPUT GROUP */
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.input-group span {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.input-group input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 14px;
+  padding: 5px;
+}
+
+/* 🎯 BUTTON */
+.edit-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #667eea;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 16px;
+}
+
+.edit-button:hover {
+  background: #5a67d8;
+  transform: scale(1.03);
+}
+
+/* 🔒 Toggle password */
+.toggle-password {
+  cursor: pointer;
+  margin-left: 8px;
+  font-size: 18px;
+}
+
+/* 🔙 BOUTON RETOUR */
+.edit-form button.edit-button.back {
+  background-color: #aaa;
+  margin-top: 10px;
+}
+
+.edit-form button.edit-button.back:hover {
+  background-color: #888;
+  transform: scale(1.03);
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 500px) {
+  .edit-form {
+    padding: 20px;
+    width: 90%;
+  }
+
+  .edit-form h2 {
+    font-size: 20px;
+  }
+
+  .edit-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

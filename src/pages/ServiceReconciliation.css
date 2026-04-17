@@ -1,0 +1,147 @@
+/* === CONTAINER PRINCIPAL === */
+.reconciliation-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.7;
+}
+
+/* === TITRES === */
+.reconciliation-container h1 {
+  font-size: 34px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #c70000; /* Rouge UBA */
+}
+
+.reconciliation-container h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 25px;
+  color: #111;
+}
+
+/* === INTRODUCTION === */
+.intro-text {
+  text-align: center;
+  font-size: 17px;
+  color: #444;
+  margin-bottom: 40px;
+}
+
+/* === SECTIONS CARTES + UL === */
+.section-box {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  border-left: 5px solid #c70000; /* Bande UBA */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.section-box ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.section-box ul li {
+  margin: 6px 0;
+  font-size: 16px;
+}
+
+/* === BOUTON RÉCLAMATION === */
+.reconciliation-btn {
+  display: inline-block;
+  background: #c70000;
+  color: #fff;
+  padding: 14px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 25px 0;
+  transition: 0.3s;
+}
+
+.reconciliation-btn:hover {
+  background: #a60000;
+}
+
+/* === CONTACT === */
+.contact-box {
+  background: #f9f9f9;
+  padding: 25px;
+  border-radius: 12px;
+  margin-top: 35px;
+  border: 1px solid #eee;
+}
+
+.contact-line {
+  font-size: 17px;
+  margin: 8px 0;
+}
+
+/* === FAQ === */
+.faq-list details {
+  background: #fff;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  transition: 0.3s;
+}
+
+.faq-list details:hover {
+  border-color: #c70000;
+}
+
+.faq-list summary {
+  font-size: 17px;
+  font-weight: 600;
+  color: #333;
+}
+
+.faq-list p {
+  margin-top: 10px;
+  color: #555;
+  font-size: 160px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .reconciliation-container {
+    padding: 15px;
+  }
+
+  .reconciliation-container h1 {
+    font-size: 28px;
+  }
+
+  .reconciliation-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* === ICONES SOCIALES === */
+.footer-social {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.footer-social a img {
+  width: 28px;
+  height: 28px;
+  filter: invert(1); /* rend l'icône blanche si nécessaire */
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.footer-social a:hover img {
+  transform: scale(1.2);
+  filter: invert(0.8);
+}

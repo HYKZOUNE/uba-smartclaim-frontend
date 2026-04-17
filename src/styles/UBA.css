@@ -1,0 +1,251 @@
+/* ===== Global ===== */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #db1c1c1d;
+  color: #1f2937;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+/* ===== Header ===== */
+.uba-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.uba-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #dc2626; /* rouge UBA */
+}
+
+.uba-nav a {
+  margin-left: 20px;
+  font-weight: 500;
+  color: #1f2937;
+  transition: color 0.3s;
+}
+
+.uba-nav a:hover {
+  color: #dc2626;
+}
+
+.uba-btn {
+  padding: 0.5rem 1rem;
+  background-color: #dc2626;
+  color: #ffffff;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-left: 20px;
+}
+
+.uba-btn:hover {
+  background-color: #b91c1c;
+}
+
+/* ===== Footer ===== */
+.uba-footer {
+  background-color: #1f2937;
+  color: #f9fafb;
+  padding: 2rem;
+}
+
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.footer-title {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #dc2626;
+}
+
+.footer-link {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #f9fafb;
+  transition: color 0.3s;
+}
+
+.footer-link:hover {
+  color: #fca5a5;
+}
+
+.footer-contact {
+  margin-bottom: 0.5rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+/* === ICONES SOCIALES === */
+.footer-social {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.footer-social a img {
+  width: 28px;
+  height: 28px;
+  filter: invert(1); /* rend l'icône blanche si nécessaire */
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.footer-social a:hover img {
+  transform: scale(1.2);
+  filter: invert(0.8);
+}
+
+/* ===== Main Pages ===== */
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #dc2626;
+  text-align: center;
+}
+
+.page-text {
+  font-size: 1.1rem;
+  color: #4b5563;
+  text-align: center;
+  margin-top: 1rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.section-box {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform 0.3s;
+}
+
+.section-box:hover {
+  transform: translateY(-5px);
+}
+
+.section-box h3 {
+  font-size: 1.25rem;
+  color: #dc2626;
+}
+
+.section-box p {
+  margin-top: 0.5rem;
+  color: #4b5563;
+}
+
+/* ===== CTA Button ===== */
+.page-btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background-color: #dc2626;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: background-color 0.3s;
+}
+
+.page-btn:hover {
+  background-color: #b91c1c;
+}
+
+/* ===== FAQ ===== */
+.faq-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.faq-item:hover {
+  transform: translateY(-3px);
+}
+
+.faq-question {
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  color: #1f2937;
+}
+
+.faq-answer {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #4b5563;
+  white-space: pre-line;
+}
+
+/* ===== Responsive ===== */
+@media (min-width: 640px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .uba-nav a {
+    margin-left: 30px;
+  }
+}

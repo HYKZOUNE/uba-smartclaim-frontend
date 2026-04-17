@@ -1,0 +1,292 @@
+/* frontend/src/components/ReclamationForm.css */
+
+/* Conteneur global */
+.form-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #fdfdfd;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Titre */
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #1e3a8a; /* bleu foncé */
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+/* Messages succès / erreur */
+.success-message, .failure-message {
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.success-message {
+  background-color: #d1fae5;
+  color: #065f46;
+  border: 1px solid #10b981;
+}
+
+.failure-message {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #f87171;
+}
+
+/* Grille du formulaire */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.form-grid .input,
+.form-grid select,
+.form-grid textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-grid .input:focus,
+.form-grid select:focus,
+.form-grid textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  outline: none;
+}
+
+/* Textarea */
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Note fichiers */
+.file-note {
+  grid-column: span 2;
+  font-size: 0.85rem;
+  color: #475569;
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+
+/* Signature */
+.signature-pad {
+  border: 2px dashed #94a3b8;
+  border-radius: 10px;
+  grid-column: span 2;
+  margin-bottom: 10px;
+}
+
+/* Boutons */
+button {
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.clear-signature {
+  background-color: #f87171;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.clear-signature:hover {
+  background-color: #dc2626;
+}
+
+.submit-btn {
+  background-color: #3b82f6;
+  color: #fff;
+  grid-column: span 2;
+}
+
+.submit-btn:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+}
+
+/* Responsive */
+@media screen and (max-width: 700px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .signature-pad {
+    width: 100% !important;
+  }
+
+  button.submit-btn,
+  button.clear-signature {
+    width: 100%;
+  }
+}
+/* Conteneur principal */
+.form-container {
+  max-width: 920px;
+  margin: 40px auto;
+  padding: 35px 30px;
+  background: linear-gradient(135deg, #ffffff, #f0f4ff);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  animation: fadeIn 0.7s ease-in-out;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Titre */
+.form-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e40af; /* bleu profond */
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+
+/* Messages succès / erreur */
+.success-message, .failure-message {
+  text-align: center;
+  padding: 12px 18px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.success-message {
+  background-color: #d1fae5;
+  color: #065f46;
+  border: 1px solid #10b981;
+}
+
+.failure-message {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #f87171;
+}
+
+/* Grille du formulaire */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* Input flottant */
+.input, select, textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #f9fafc;
+}
+
+.input:focus, select:focus, textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+  outline: none;
+  background: #fff;
+}
+
+/* Placeholder flottant */
+.input::placeholder, textarea::placeholder {
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* Textarea */
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Note fichiers */
+.file-note {
+  grid-column: span 2;
+  font-size: 0.85rem;
+  color: #475569;
+  margin-top: -8px;
+  margin-bottom: 12px;
+}
+
+/* Signature */
+.signature-pad {
+  border: 2px dashed #3b82f6;
+  border-radius: 12px;
+  grid-column: span 2;
+  margin-bottom: 12px;
+}
+
+/* Boutons */
+button {
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clear-signature {
+  background-color: #f87171;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.clear-signature:hover {
+  background-color: #ef4444;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+}
+
+.submit-btn {
+  background: linear-gradient(120deg, #3b82f6, #60a5fa);
+  color: #fff;
+  grid-column: span 2;
+  font-weight: 700;
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+  background: linear-gradient(120deg, #2563eb, #3b82f6);
+}
+
+/* Montants dynamiques */
+.input.red { background:#fee2e2; border-color:#f87171; color:#b91c1c; }
+.input.orange { background:#fff7ed; border-color:#f97316; color:#c2410c; }
+.input.green { background:#ecfdf5; border-color:#34d399; color:#065f46; }
+.input.neutral { background:#f9fafb; border-color:#cbd5e1; color:#111827; }
+
+/* Responsive */
+@media screen and (max-width: 720px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .signature-pad { width: 100% !important; }
+  button.submit-btn, button.clear-signature { width: 100%; }
+}

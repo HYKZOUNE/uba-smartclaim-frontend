@@ -1,0 +1,12 @@
+/* frontend/src/components/NotificationsPanel.css */
+.notifications-card { background:#fff; padding:1rem; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.06); }
+.notifications-card ul{ list-style:none; padding:0; margin:0; }
+.note { border-left:4px solid #ddd; padding:0.5rem 0.8rem; margin-bottom:0.6rem; background:#fafafa; border-radius:6px; }
+.note.reception { border-color:#2563eb; }
+.note.en_cours { border-color:#f59e0b; }
+.note.investigation { border-color:#6366f1; }
+.note.resolu { border-color:#10b981; }
+.note.rejete { border-color:#ef4444; }
+.note-head { display:flex; justify-content:space-between; font-size:0.85rem; color:#374151; }
+.note-message { margin-top:0.4rem; color:#111827; }
+.note-channel { margin-top:0.25rem; font-size:0.8rem; color:#6b7280; }

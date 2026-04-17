@@ -1,0 +1,150 @@
+/* Container général */
+.register-page, .login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f3f4f6; /* gris clair */
+  font-family: 'Arial', sans-serif;
+  padding: 1rem;
+}
+
+/* Card formulaire */
+.register-card, .login-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Logo */
+.register-logo, .login-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  border: 2px solid #4f46e5; /* violet doux */
+}
+
+/* Titres */
+.register-card h2, .login-card h2 {
+  margin-bottom: 1.5rem;
+  color: #111827;
+  font-size: 1.5rem;
+}
+
+/* Champs inputs + select */
+.register-card input, .login-card input,
+.register-card select, .login-card select {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  margin-bottom: 1rem;
+  font-size: 15px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.2s;
+  box-sizing: border-box;
+}
+
+.register-card input:focus, .login-card input:focus,
+.register-card select:focus, .login-card select:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 6px rgba(79,70,229,0.3);
+}
+
+/* Icône mot de passe */
+.input-group {
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  opacity: 0.6;
+  transition: 0.2s;
+}
+
+.toggle-password:hover {
+  opacity: 1;
+}
+
+/* Boutons */
+.register-card button, .login-card button {
+  width: 100%;
+  padding: 12px;
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.register-card button:hover:not(:disabled), .login-card button:hover:not(:disabled) {
+  background: #4338ca;
+}
+
+.register-card button:disabled, .login-card button:disabled {
+  background: #a5b4fc;
+  cursor: not-allowed;
+}
+
+/* Liens */
+.auth-text, .auth-links {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.auth-link {
+  color: #4f46e5;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+/* Message d'erreur */
+.error {
+  color: #b91c1c;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .register-card, .login-card {
+    padding: 1.5rem;
+  }
+
+  .register-card h2, .login-card h2 {
+    font-size: 1.3rem;
+  }
+
+  .register-card input, .login-card input,
+  .register-card select, .login-card select,
+  .register-card button, .login-card button {
+    font-size: 0.95rem;
+    padding: 10px 35px 10px 10px;
+  }
+
+  .register-logo, .login-logo {
+    width: 60px;
+    height: 60px;
+  }
+}

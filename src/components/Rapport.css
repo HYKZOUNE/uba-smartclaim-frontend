@@ -1,0 +1,114 @@
+/* Rapport.css */
+
+/* Conteneur principal */
+.rapport-container {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Titre principal */
+.rapport-container h2 {
+  color: #D32F2F; /* Rouge UBA */
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+/* FILTRES */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filters input[type="date"],
+.filters select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.filters button {
+  background-color: #D32F2F;
+  color: #fff;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.filters button:hover {
+  background-color: #b71c1c; /* Rouge foncé au hover */
+}
+
+/* Messages d'erreur */
+.error {
+  color: #D32F2F;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Tableau */
+.rapport-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.rapport-table th, .rapport-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.rapport-table th {
+  background-color: #D32F2F;
+  color: #fff;
+  font-weight: bold;
+}
+
+.rapport-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.rapport-table tbody tr:hover {
+  background-color: #ffe6e6;
+}
+
+/* Graphiques */
+.chart {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.chart h3 {
+  color: #D32F2F;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+  }
+
+  .filters button {
+    width: 100%;
+  }
+
+  .chart {
+    height: 250px;
+  }
+}
