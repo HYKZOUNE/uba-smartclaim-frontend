@@ -12,7 +12,7 @@ const Reports = () => {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/rapports', {
+        const res = await api.get('/api/rapports', {
           withCredentials: true
         });
         setReports(res.data);
