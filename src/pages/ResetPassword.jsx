@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import api from "../api";
 import { useParams } from "react-router-dom";
 import "./oublie.css";
 
@@ -14,9 +15,9 @@ const ResetPassword = () => {
     try {
 
       const res = await axios.post(
-        `http://localhost:5000/api/clients/reset-password/${token}`,
-        { mot_de_passe: password }
-      );
+  `${process.env.REACT_APP_API_URL}/api/clients/reset-password/${token}`,
+  { mot_de_passe: password }
+);
       
 
       setMessage(res.data.message);
