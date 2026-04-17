@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import api from "../api";
 import "./VerifierDossier.css";
 import Header1 from "../components/Header1";
 import Footer1 from "../components/Footer1";
@@ -22,18 +23,16 @@ export default function VerifierDossier() {
 
     try {
 
-      const res = await axios.post(
-        "http://localhost:5000/api/suivi/verifier",
-        { numero_dossier: numero, email }
-      );
+      const res = await api.post("/api/suivi/verifier", {
+  numero_dossier: numero,
+  email
+});
 
       setResult(res.data.data);
       setType(res.data.type);
 
       // historique
-      const hist = await axios.get(
-        `http://localhost:5000/api/suivi/historique/${numero}`
-      );
+      const hist = await api.get(`/api/suivi/historique/${numero}`);
 
       setHistorique(hist.data);
 
