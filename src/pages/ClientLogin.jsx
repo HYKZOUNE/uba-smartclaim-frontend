@@ -24,6 +24,7 @@ const ClientLogin = () => {
         email,
         mot_de_passe: password
       });
+      
 
       localStorage.setItem("token", res.data.token);
       setTypeMessage("success");

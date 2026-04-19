@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import api from "../api";
+import api from "../services/api";
 import "./VerifierDossier.css";
 import Header1 from "../components/Header1";
 import Footer1 from "../components/Footer1";
