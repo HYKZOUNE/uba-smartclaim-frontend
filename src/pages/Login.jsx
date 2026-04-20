@@ -16,7 +16,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const resp = await api.post("/api/auth/login", { 
+      const resp = await api.post("/auth/login", {  
         email, 
         mot_de_passe: password 
       });
@@ -97,6 +97,9 @@ const Login = () => {
           Pas de compte ?{" "}
           <Link to="/ClientRegister" className="login-link">
             S’inscrire
+          </Link>
+          <Link to="/Register" className="login-link">
+            S’inscrire admin
           </Link>
         </p>
       </div>
