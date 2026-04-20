@@ -4,7 +4,7 @@ import api from "../services/api";
 
 
 const axiosSecure = axios.create({
-  baseURL: process.env.REACT_APP_API_URL + "/api"
+  baseURL: process.env.REACT_APP_API_URL
 });
 
 axiosSecure.interceptors.request.use(
