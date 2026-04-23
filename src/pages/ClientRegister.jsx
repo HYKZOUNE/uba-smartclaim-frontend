@@ -72,15 +72,16 @@ const ClientRegister = () => {
     }
 
     setLoading(true);
+    
     try {
-      await api.post("/clients/register", {
+      await api.post("/api/clients/register", {
         nom: form.nom,
         prenom: form.prenom,
         email: form.email,
         numero_compte: form.numero_compte,
         telephone: form.telephone,
         mot_de_passe: form.mot_de_passe
-      });
+    });
 
       setTypeMessage("success");
       setMessage("Compte créé avec succès !");
