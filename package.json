@@ -34,8 +34,10 @@
     "selfsigned": "^4.0.0",
     "vite": "^7.2.1",
     "web-vitals": "^2.1.4",
+    "homepage": ".",
     "xlsx": "^0.18.5"
   },
+
   "scripts": {
     "start": "set HTTPS=false&&react-scripts start",
     "build": "react-scripts build",
