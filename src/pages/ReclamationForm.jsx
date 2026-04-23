@@ -73,12 +73,18 @@ export default function ReclamationForm() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+
   /** ---------------------------- HANDLE INPUTS -----------------------------*/
   const handleInput = (e) => {
   const { name, value } = e.target;
 
-  let montant = parseInt(name === "montant_transaction" ? value : form.montant_transaction || 0);
-  let guichet = name === "guichet" ? value : form.guichet;
+  const updated = {
+    ...form,
+    [name]: value,
+  };
+
+  const montant = Number(updated.montant_transaction) || 0;
+  const guichet = updated.guichet;
 
   let frais = 0;
 
@@ -86,34 +92,32 @@ export default function ReclamationForm() {
     frais = 0;
   } else {
     if (montant >= 10000 && montant <= 20000) frais = 299;
-    else if (montant >= 20001 && montant <= 30000) frais = 358;
-    else if (montant >= 30001 && montant <= 40000) frais = 477;
-    else if (montant >= 40001 && montant <= 50000) frais = 577;
-    else if (montant >= 50001 && montant <= 60000) frais = 716;
-    else if (montant >= 60001 && montant <= 70000) frais = 835;
-    else if (montant >= 70001 && montant <= 80000) frais = 954;
-    else if (montant >= 80001 && montant <= 99999) frais = 1074;
-    else if (montant >= 100000 && montant <= 400000) frais = 1193;
+    else if (montant <= 30000) frais = 358;
+    else if (montant <= 40000) frais = 477;
+    else if (montant <= 50000) frais = 577;
+    else if (montant <= 60000) frais = 716;
+    else if (montant <= 70000) frais = 835;
+    else if (montant <= 80000) frais = 954;
+    else if (montant <= 99999) frais = 1074;
+    else if (montant <= 400000) frais = 1193;
   }
 
   const remboursable = montant + frais;
 
-  // Choix couleur selon montant
   let colorClass = "neutral";
   if (montant < 20000) colorClass = "red";
   else if (montant <= 100000) colorClass = "orange";
   else colorClass = "green";
 
-  setForm((prev) => ({
-    ...prev,
-    [name]: value,
+  setForm({
+    ...updated,
     montant_transaction: montant,
     montant_frais: frais,
     montant_remboursable: remboursable,
     montant_total: remboursable,
     montant_total_lettres: nombreEnLettres(remboursable).toUpperCase(),
     colorClass,
-  }));
+  });
 };
 
 
@@ -176,14 +180,14 @@ export default function ReclamationForm() {
     return;
   }
 
-  const formData = new FormData();
-  for (let key in form) {
-    if (key === "uploads") {
-      form.uploads.forEach((file) => formData.append("uploads", file));
-    } else {
-      formData.append(key, form[key]);
-    }
+const formData = new FormData();
+ Object.keys(form).forEach((key) => {
+  if (key === "uploads") {
+    form.uploads.forEach((file) => formData.append("uploads", file));
+  } else if (key !== "colorClass") {
+    formData.append(key, form[key]);
   }
+});
 
   if (sigCanvas.current && !sigCanvas.current.isEmpty()) {
     formData.set("signature", sigCanvas.current.toDataURL());
