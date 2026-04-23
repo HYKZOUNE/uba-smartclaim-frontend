@@ -32,12 +32,15 @@ export default function CarteBloque() {
     });
     if (sigCanvas.current && !sigCanvas.current.isEmpty()) formData.set("signature", sigCanvas.current.toDataURL());
 
-    try {
-      const res = await fetch("http://localhost:5000/api/cartebloque/new", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-        body: formData
-      });
+   try {
+  const res = await fetch(
+    `${process.env.REACT_APP_API_URL}/api/cartebloque/new`,
+    {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+      body: formData
+    }
+  );
       const result = await res.json();
       if (!res.ok) return setError(result.error || "Erreur lors de l'envoi.");
       setSuccess(`✔ Réclamation envoyée ! Dossier N°: ${result.numero_dossier}`);

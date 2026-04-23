@@ -22,17 +22,24 @@ export default function CarteAvale() {
     const token = localStorage.getItem("token");
     if (!token) return setError("Connectez-vous d'abord.");
 
-    try {
-      const formData = new FormData();
-      Object.entries(form).forEach(([key, value]) => formData.append(key, value));
+   try {
+  const formData = new FormData();
 
-      const res = await fetch("http://localhost:5000/api/carteavale/new", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}` // ne pas mettre Content-Type pour FormData
-        },
-        body: formData
-      });
+  Object.entries(form).forEach(([key, value]) =>
+    formData.append(key, value)
+  );
+
+  const res = await fetch(
+    `${process.env.REACT_APP_API_URL}/api/carteavale/new`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        // ❌ pas de Content-Type avec FormData
+      },
+      body: formData,
+    }
+  );
 
       const result = await res.json();
       if (!res.ok) return setError(result.error || "Erreur lors de l'envoi.");

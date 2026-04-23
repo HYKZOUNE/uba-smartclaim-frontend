@@ -98,9 +98,6 @@ const Login = () => {
           <Link to="/ClientRegister" className="login-link">
             S’inscrire
           </Link>
-          <Link to="/Register" className="login-link">
-            S’inscrire admin
-          </Link>
         </p>
       </div>
     </div>

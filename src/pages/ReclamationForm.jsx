@@ -189,12 +189,15 @@ export default function ReclamationForm() {
     formData.set("signature", sigCanvas.current.toDataURL());
   }
 
-  try {
-    const res = await fetch("http://localhost:5000/api/chargeback/new", {
+ try {
+  const res = await fetch(
+    `${process.env.REACT_APP_API_URL}/api/chargeback/new`,
+    {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
-    });
+    }
+  );
 
     const result = await res.json();
 

@@ -85,17 +85,17 @@ export default function AdminDashboard() {
   // 🔥 fonctions (à mettre en haut de ton composant)
 const handleDecision = async (id, decision) => {
   try {
-    const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
-    await axios.post(
-      `http://localhost:5000/api/admin/chargeback/${id}/decision`,
-      { decision },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+  await axios.post(
+    `${process.env.REACT_APP_API_URL}/api/admin/chargeback/${id}/decision`,
+    { decision },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
     alert("Décision envoyée avec succès");
   } catch (err) {
@@ -126,50 +126,60 @@ const handleDecision = async (id, decision) => {
       setSelectedIds([]);
       setLoading(true);
       try {
-        let url = "";
-        switch (type) {
-          case "reclamations": url = "/api/admin/chargeback/all"; break;
-          case "cartebloques": url = "/api/admin/cartesbloquees"; break;
-          case "CarteAvale": url = "/api/admin/carteavale"; break;
-          case "clients": url = "/api/admin/clients"; break;
-          case "agents": url = "/api/admin/agents"; break;
-          case "attente": url = `/api/admin/chargeback/status/en-attente`; break;
-          case "validees": url = `/api/admin/chargeback/status/valide`; break;
-          case "rejetees": url = `/api/admin/chargeback/status/rejete`; break;
-          case "paye": url = `/api/admin/chargeback/status/paye`; break;
-          default: setAllData([]); setLoading(false); return;
-        }
-        await axios.get(`http://localhost:5000${url}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        }).then(res => setAllData(res.data.data || []));
-      } catch (err) {
-        console.error(err);
-        showToast("Erreur lors du chargement des données", "error");
-      } finally {
-        setLoading(false);
-      }
-    },
-    [token]
-  );
+  let url = "";
+  switch (type) {
+    case "reclamations": url = "/api/admin/chargeback/all"; break;
+    case "cartebloques": url = "/api/admin/cartesbloquees"; break;
+    case "CarteAvale": url = "/api/admin/carteavale"; break;
+    case "clients": url = "/api/admin/clients"; break;
+    case "agents": url = "/api/admin/agents"; break;
+    case "attente": url = `/api/admin/chargeback/status/en-attente`; break;
+    case "validees": url = `/api/admin/chargeback/status/valide`; break;
+    case "rejetees": url = `/api/admin/chargeback/status/rejete`; break;
+    case "paye": url = `/api/admin/chargeback/status/paye`; break;
+    default: setAllData([]); setLoading(false); return;
+  }
 
+  await axios.get(
+    `${process.env.REACT_APP_API_URL}${url}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  ).then(res => setAllData(res.data.data || []));
+
+} catch (err) {
+  console.error(err);
+  showToast("Erreur lors du chargement des données", "error");
+} finally {
+  setLoading(false);
+}
+},
+[token]
+);
   // ================== FETCH DASHBOARD & PROFILE ==================
   const fetchDashboard = useCallback(async () => {
     setLoading(true);
     try {
-      await axios.get("http://localhost:5000/api/admin/dashboard", {
-        headers: { Authorization: `Bearer ${token}` },
-      }).then(res => {
-        if (res.data.success) {
-          setStats(res.data.stats);
-          setAllData(res.data.reclamations || []);
-        }
-      });
+  await axios.get(
+    `${process.env.REACT_APP_API_URL}/api/admin/dashboard`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  ).then(res => {
+    if (res.data.success) {
+      setStats(res.data.stats);
+      setAllData(res.data.reclamations || []);
+    }
+  });
 
-      await axios.get("http://localhost:5000/api/admin/me", {
-        headers: { Authorization: `Bearer ${token}` },
-      }).then(profile => {
-        if (profile.data.success) setAdmin(profile.data.user);
-      });
+  await axios.get(
+    `${process.env.REACT_APP_API_URL}/api/admin/me`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  ).then(profile => {
+    if (profile.data.success) setAdmin(profile.data.user);
+  });
 
     } catch (err) {
       console.error(err);
@@ -220,9 +230,8 @@ const handleDelete = async (id) => {
   }
 
   try {
-    const url = `http://localhost:5000/api/admin/${route}/${id}`;
-    console.log("DELETE =>", url); // 🔥 debug
-
+  const url = `${process.env.REACT_APP_API_URL}/api/admin/${route}/${id}`;
+  console.log("DELETE =>", url); // 🔥 debug
     await axios.delete(url);
 
     showToast("Supprimé avec succès", "success");
@@ -263,12 +272,12 @@ const handleDelete = async (id) => {
     ? allData.filter(d => selectedIds.includes(d.id))
     : allData;
 
-  try {
-    const res = await axios.post(
-      "http://localhost:5000/api/export-pdf",
-      { dossiers: data },
-      { responseType: "blob" }
-    );
+ try {
+  const res = await axios.post(
+    `${process.env.REACT_APP_API_URL}/api/export-pdf`,
+    { dossiers: data },
+    { responseType: "blob" }
+  );
 
     const url = window.URL.createObjectURL(new Blob([res.data]));
     const link = document.createElement("a");
@@ -284,17 +293,22 @@ const handleDelete = async (id) => {
   // ================== ACTION DECISION ==================
   const actionDecision = async (id, message, type) => {
     try {
-      let url = "";
-      switch(type){
-        case "chargeback": url = `/api/admin/chargeback/${id}/decision`; break;
-        case "cartebloques": url = `/api/admin/cartesbloquees/${id}/decision`; break;
-        case "CarteAvale": url = `/api/admin/carteavale/${id}/decision`; break;
-        default: return;
-      }
+  let url = "";
+  switch(type){
+    case "chargeback": url = `/api/admin/chargeback/${id}/decision`; break;
+    case "cartebloques": url = `/api/admin/cartesbloquees/${id}/decision`; break;
+    case "CarteAvale": url = `/api/admin/carteavale/${id}/decision`; break;
+    default: return;
+  }
 
-      await axios.post(`http://localhost:5000${url}`, { message }, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+  await axios.post(
+    `${process.env.REACT_APP_API_URL}${url}`,
+    { message },
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+
       showToast(`Décision "${message}" envoyée avec succès`);
     } catch (err) {
       console.error("❌ Erreur décision :", err.response || err);
@@ -711,11 +725,12 @@ case "agents":
             };
 
             try {
+              
               const response = await fetch(
-                `http://localhost:5000/api/pdf/generate/${dossierComplet.id}`,
+                `${process.env.REACT_APP_API_URL}/api/pdf/generate/${dossierComplet.id}`,
                 { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(dossierComplet) }
               );
-
+              
               if (!response.ok) throw new Error("Erreur génération PDF");
 
               const blob = await response.blob();
