@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import api from "../services/api";
-import axios from "axios";
+//import axios from "axios";
 import "./auth.css";
 
 export default function VerifyOTP() {
