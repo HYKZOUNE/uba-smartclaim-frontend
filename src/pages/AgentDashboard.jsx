@@ -95,31 +95,31 @@ const showToast = (message, type = "success") => {
 useEffect(() => {
   const fetchCartesBloquees = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/agent/cartesbloquees", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/agent/cartesbloquees`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setCartesBloquees(res.data);
     } catch (err) {
       console.error("Erreur fetch cartes bloquées:", err);
     }
   };
 
-  fetchCartesBloquees(); 
-  }, [token]);  // token dans le tableau pour éviter le warning
-
-
+  fetchCartesBloquees();
+}, [token]);
 
 // eslint-disable-next-line no-unused-vars
 
 const [chargebacks, setChargebacks] = useState([]);
 
 // Exemple : récupération initiale des dossiers
-
 useEffect(() => {
   const fetchChargebacks = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/agent/chargeback/all",
+        `${process.env.REACT_APP_API_URL}/api/agent/chargeback/all`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -152,12 +152,15 @@ useEffect(() => {
 
   // ================== FETCH DASHBOARD & PROFILE ==================
   
-  const fetchDashboard = useCallback(async () => {
+const fetchDashboard = useCallback(async () => {
   setLoading(true);
   try {
-    const res = await axios.get("http://localhost:5000/api/agent/dashboard", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await axios.get(
+      `${process.env.REACT_APP_API_URL}/api/agent/dashboard`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
 
     if (res.data.success) {
       setStats(res.data.stats);
@@ -165,9 +168,12 @@ useEffect(() => {
       console.log("⚠️ Erreur dashboard:", res.data);
     }
 
-    const profile = await axios.get("http://localhost:5000/api/agent/me", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const profile = await axios.get(
+      `${process.env.REACT_APP_API_URL}/api/agent/me`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
 
     if (profile.data.success) {
       setAgent(profile.data.user);
@@ -182,7 +188,7 @@ useEffect(() => {
 }, [token]);
 
 
-  useEffect(() => { fetchDashboard(); }, [fetchDashboard]);
+useEffect(() => { fetchDashboard(); }, [fetchDashboard]);
 
   // ================== LOAD TABLE ==================
 const loadTable = useCallback(async (type) => {
@@ -199,31 +205,33 @@ const loadTable = useCallback(async (type) => {
   setLoading(true);
 
   try {
-    let url = "";
-    switch(normalizedType){
-      case "reclamations": url="/api/agent/chargeback/all"; break;
-      case "cartebloquees": url="/api/agent/cartesbloquees"; break;
-      case "carteavale": url="/api/agent/carteavale"; break;
-      case "clients": url="/api/agent/clients"; break;
-      case "attente": url = `/api/agent/chargeback/status/en-attente`; break;
-      case "validees": url = `/api/agent/chargeback/status/valide`; break;
-      case "rejetees": url = `/api/agent/chargeback/status/rejete`; break;
-      case "paye": url = `/api/agent/chargeback/status/paye`; break;
-      default: setAllData([]); setLoading(false); return;
-    }
-
-    const res = await axios.get(`http://localhost:5000${url}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    // Vérifier si res.data.data existe sinon []
-    setAllData(res.data.data || []);
-  } catch(err){
-    console.error(err);
-    showToast("Erreur lors du chargement des données", "error");
-  } finally {
-    setLoading(false);
+  let url = "";
+  switch (normalizedType) {
+    case "reclamations": url = "/api/agent/chargeback/all"; break;
+    case "cartebloquees": url = "/api/agent/cartesbloquees"; break;
+    case "carteavale": url = "/api/agent/carteavale"; break;
+    case "clients": url = "/api/agent/clients"; break;
+    case "attente": url = `/api/agent/chargeback/status/en-attente`; break;
+    case "validees": url = `/api/agent/chargeback/status/valide`; break;
+    case "rejetees": url = `/api/agent/chargeback/status/rejete`; break;
+    case "paye": url = `/api/agent/chargeback/status/paye`; break;
+    default: setAllData([]); setLoading(false); return;
   }
+
+  const res = await axios.get(
+    `${process.env.REACT_APP_API_URL}${url}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+
+  setAllData(res.data.data || []);
+} catch (err) {
+  console.error(err);
+  showToast("Erreur lors du chargement des données", "error");
+} finally {
+  setLoading(false);
+}
 }, [token]);
 
   // ================== GESTION SÉLECTION LIGNES ==================
@@ -257,13 +265,13 @@ const loadTable = useCallback(async (type) => {
       return;
     }
 
-    try {
-      const url = `http://localhost:5000/api/${isAdmin ? "admin" : "agent"}/${route}/${id}`;
-      console.log("DELETE =>", url);
+   try {
+  const url = `${process.env.REACT_APP_API_URL}/api/${isAdmin ? "admin" : "agent"}/${route}/${id}`;
+  console.log("DELETE =>", url);
 
-      await axios.delete(url, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+  await axios.delete(url, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 
       showToast("Supprimé avec succès", "success");
       loadTable(activeTable);
@@ -296,20 +304,19 @@ const exportPDF = async () => {
 
   setLoading(true);
 
-  try {
-   
-    const res = await axios.post(
-  "http://localhost:5000/api/export-pdf",
-  {
-    dossiers: data
-  },
-  {
-    headers: {
-      Authorization: `Bearer ${token}`
+ try {
+  const res = await axios.post(
+    `${process.env.REACT_APP_API_URL}/api/export-pdf`,
+    {
+      dossiers: data
     },
-    responseType: "blob"
-  }
-);
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      responseType: "blob"
+    }
+  );
 
     const blob = new Blob([res.data], { type: "application/pdf" });
     const url = window.URL.createObjectURL(blob);
@@ -336,13 +343,12 @@ const actionDecision = async (id, action) => {
     console.log(`🚀 Envoi décision: ${action} pour dossier ID: ${id}`);
 
     const response = await axios.post(
-      `http://localhost:5000/api/agent/chargeback/${id}/decision`,
-      { decision: action },
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-
+  `${process.env.REACT_APP_API_URL}/api/agent/chargeback/${id}/decision`,
+  { decision: action },
+  {
+    headers: { Authorization: `Bearer ${token}` },
+  }
+);
     if (response.data.success) {
       // 🔄 Mettre à jour le tableau local
       setChargebacks(prev =>
@@ -392,14 +398,14 @@ const actionDecisionCarteBloquee = async (id) => {
     console.log("🚀 Envoi décision Carte Bloquée ID:", id);
 
     const res = await axios.post(
-      `http://localhost:5000/api/agent/cartesbloquees/${id}/decision`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+  `${process.env.REACT_APP_API_URL}/api/agent/cartesbloquees/${id}/decision`,
+  {},
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
     console.log("✅ OK:", res.data);
     showToast("Carte bloquée traitée avec succès");
@@ -412,15 +418,15 @@ const actionDecisionCarteBloquee = async (id) => {
 
 const actionDecisionCarteAvale = async (id) => {
   try {
-    await axios.post(
-      `http://localhost:5000/api/agent/carteavale/${id}/decision`,
-      {}, // ❌ vide (pas de body)
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+  await axios.post(
+    `${process.env.REACT_APP_API_URL}/api/agent/carteavale/${id}/decision`,
+    {}, // ❌ vide (pas de body)
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
     showToast("Carte retirée avec succès");
   } catch (err) {

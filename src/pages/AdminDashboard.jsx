@@ -296,7 +296,7 @@ const handleDelete = async (id) => {
   let url = "";
   switch(type){
     case "chargeback": url = `/api/admin/chargeback/${id}/decision`; break;
-    case "cartebloques": url = `/api/admin/cartesbloquees/${id}/decision`; break;
+    case "cartesbloquees": url = `/api/admin/cartesbloquees/${id}/decision`; break;
     case "CarteAvale": url = `/api/admin/carteavale/${id}/decision`; break;
     default: return;
   }
@@ -730,7 +730,7 @@ case "agents":
                 `${process.env.REACT_APP_API_URL}/api/pdf/generate/${dossierComplet.id}`,
                 { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(dossierComplet) }
               );
-              
+
               if (!response.ok) throw new Error("Erreur génération PDF");
 
               const blob = await response.blob();
