@@ -234,6 +234,7 @@ const handleDelete = async (id) => {
     const token = localStorage.getItem("token");
 
     const url = `${process.env.REACT_APP_API_URL}/api/admin/${route}/${id}`;
+
     console.log("DELETE =>", url);
 
     await axios.delete(url, {
@@ -247,10 +248,7 @@ const handleDelete = async (id) => {
 
   } catch (err) {
     console.error("❌ DELETE ERROR:", err.response?.data || err.message);
-    showToast(
-      err.response?.data?.message || "Erreur lors de la suppression",
-      "error"
-    );
+    showToast("Erreur suppression", "error");
   }
 };
 
