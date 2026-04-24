@@ -432,3 +432,59 @@ body {
     flex: 1 1 100%;
   }
 }
+
+
+
+
+@media screen and (max-width: 768px) {
+
+  .vm-container {
+    flex-direction: column;
+  }
+
+  .vm-sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .vm-main {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .vm-cards {
+    grid-template-columns: 1fr !important;
+  }
+
+  .vm-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .vm-top-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .vm-table-header {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+.vm-table {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .vm-sidebar {
+    display: none;
+  }
+}
