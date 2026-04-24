@@ -57,6 +57,7 @@ export default function AgentDashboard() {
   const printRef = useRef();
   // eslint-disable-next-line no-unused-vars
   const [cartesBloquees, setCartesBloquees] = useState([]);
+  const [chargebacks, setChargebacks] = useState([]);
   
   const navigate = useNavigate();
 
@@ -92,7 +93,10 @@ const showToast = (message, type = "success") => {
 };
 
 
+
 useEffect(() => {
+  if (!token) return;
+
   const fetchCartesBloquees = async () => {
     try {
       const res = await axios.get(
@@ -101,21 +105,21 @@ useEffect(() => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      setCartesBloquees(res.data);
+
+      setCartesBloquees(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
       console.error("Erreur fetch cartes bloquées:", err);
+      setCartesBloquees([]);
     }
   };
 
   fetchCartesBloquees();
 }, [token]);
 
-// eslint-disable-next-line no-unused-vars
-
-const [chargebacks, setChargebacks] = useState([]);
-
 // Exemple : récupération initiale des dossiers
 useEffect(() => {
+  if (!token) return;
+
   const fetchChargebacks = async () => {
     try {
       const res = await axios.get(
@@ -125,13 +129,14 @@ useEffect(() => {
         }
       );
 
-      // ✅ s'assurer que c'est bien un tableau
-      const data = Array.isArray(res.data) ? res.data : res.data.data || [];
-      setChargebacks(data);
+      const data = Array.isArray(res.data)
+        ? res.data
+        : res.data?.data || [];
 
+      setChargebacks(data);
     } catch (err) {
       console.error("❌ Erreur récupération chargebacks:", err);
-      setChargebacks([]); // toujours un tableau même en cas d'erreur
+      setChargebacks([]);
     }
   };
 
@@ -438,10 +443,12 @@ const actionDecisionCarteAvale = async (id) => {
 
 
   // ================== SEARCH & PAGINATION ==================
- const dataSource = activeTable === "reclamations" 
-  ? chargebacks 
-  : allData;
-
+const dataSource =
+  activeTable === "reclamations"
+    ? chargebacks
+    : activeTable === "cartebloquees"
+    ? cartesBloquees
+    : [];
 
 
 const filtered = dataSource.filter(item =>
