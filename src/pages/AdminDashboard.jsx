@@ -211,12 +211,13 @@ const handleDecision = async (id, decision) => {
   };
 
   // ================== DELETE ==================
+// ================== DELETE ==================
 const handleDelete = async (id) => {
   if (!window.confirm("Voulez-vous vraiment supprimer cet élément ?")) return;
 
   const tableRouteMap = {
     reclamations: "chargeback",
-    cartebloques: "cartebloquees",
+    cartebloquees: "cartebloquees",
     CarteAvale: "carteavale",
     clients: "clients",
     agents: "users",
@@ -230,16 +231,26 @@ const handleDelete = async (id) => {
   }
 
   try {
-  const url = `${process.env.REACT_APP_API_URL}/api/admin/${route}/${id}`;
-  console.log("DELETE =>", url); // 🔥 debug
-    await axios.delete(url);
+    const token = localStorage.getItem("token");
+
+    const url = `${process.env.REACT_APP_API_URL}/api/admin/${route}/${id}`;
+    console.log("DELETE =>", url);
+
+    await axios.delete(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     showToast("Supprimé avec succès", "success");
     loadTable(activeTable);
 
   } catch (err) {
     console.error("❌ DELETE ERROR:", err.response?.data || err.message);
-    showToast(err.response?.data?.message || "Erreur lors de la suppression", "error");
+    showToast(
+      err.response?.data?.message || "Erreur lors de la suppression",
+      "error"
+    );
   }
 };
 
