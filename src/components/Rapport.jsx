@@ -7,6 +7,7 @@ import * as XLSX from "xlsx";
 import "./Rapport.css";
 
 export default function Rapport() {
+  const token = localStorage.getItem("token");
   const [data, setData] = useState([]);
   const [message, setMessage] = useState("");
   const [filters, setFilters] = useState({
