@@ -426,7 +426,7 @@ const handleDelete = async (id) => {
 <div className="vm-cards">
   {[
     { title: "Total Chargebacks", key: "reclamations", value: stats.totalReclamations },
-    { title: "Cartes Bloquées", key: "cartebloquees", value: stats.totalCarteBloquees },
+    { title: "Carte Bloquées", key: "cartebloquees", value: stats.totalCarteBloquees },
     { title: "Cartes Avalées", key: "CarteAvale", value: stats.totalCarteAvale },
     { title: "Clients", key: "clients", value: stats.totalClients },
     { title: "Agents", key: "agents", value: stats.totalAgents },
@@ -585,12 +585,12 @@ const handleDelete = async (id) => {
         </>
       );
 
-                case "cartebloques":
+                case "cartebloquees":
                   return (
                     <>
                       <button
   className="btn-small pay"
-  onClick={() => actionDecision(r.id, "carte est bien bloquée", "cartebloques")}
+  onClick={() => actionDecision(r.id, "carte est bien bloquée", "cartebloquees")}
   title="Bloquer"
 >
   Bloquée
