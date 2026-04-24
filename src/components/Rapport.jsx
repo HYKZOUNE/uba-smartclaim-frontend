@@ -37,7 +37,8 @@ export default function Rapport() {
     if (!filters.categorie) { setMessage("Veuillez sélectionner une catégorie"); setData([]); return; }
     try {
   const res = await axios.get(
-    `${process.env.REACT_APP_API_URL}/api/admin/rapport`,
+    `${process.env.REACT_APP_API_URL || "https://uba-smartclaim-api.onrender.com"}/api/admin/rapport`,
+    
     {
       params: filters,
       headers: {
@@ -59,7 +60,7 @@ export default function Rapport() {
   setMessage("Erreur lors de la récupération des données");
   setData([]);
 }
-  }, [filters]);
+  }, [filters, token]);
 
   useEffect(() => { fetchRapport(); }, [fetchRapport]);
 
