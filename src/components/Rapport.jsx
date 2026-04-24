@@ -35,14 +35,29 @@ export default function Rapport() {
   const fetchRapport = useCallback(async () => {
     if (!filters.categorie) { setMessage("Veuillez sélectionner une catégorie"); setData([]); return; }
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/rapport", { params: filters });
-      if (res.data.message) { setMessage(res.data.message); setData([]); } 
-      else { setMessage(""); setData(res.data.data); }
-    } catch (err) {
-      console.error("Erreur API :", err);
-      setMessage("Erreur lors de la récupération des données");
-      setData([]);
+  const res = await axios.get(
+    `${process.env.REACT_APP_API_URL}/api/admin/rapport`,
+    {
+      params: filters,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     }
+  );
+
+  if (res.data.message) {
+    setMessage(res.data.message);
+    setData([]);
+  } else {
+    setMessage("");
+    setData(res.data.data);
+  }
+
+} catch (err) {
+  console.error("Erreur API :", err.response || err);
+  setMessage("Erreur lors de la récupération des données");
+  setData([]);
+}
   }, [filters]);
 
   useEffect(() => { fetchRapport(); }, [fetchRapport]);
