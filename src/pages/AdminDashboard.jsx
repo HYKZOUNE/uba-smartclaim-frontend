@@ -129,9 +129,7 @@ const handleDecision = async (id, decision) => {
   let url = "";
   switch (type) {
     case "reclamations": url = "/api/admin/chargeback/all"; break;
-    case "cartebloquees":
-url = "/api/admin/cartesbloquees";
-break;
+    case "cartebloquees": url = "/api/admin/cartesbloquees"; break;
     case "CarteAvale": url = "/api/admin/carteavale"; break;
     case "clients": url = "/api/admin/clients"; break;
     case "agents": url = "/api/admin/agents"; break;
