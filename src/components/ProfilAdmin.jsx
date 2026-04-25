@@ -44,9 +44,12 @@ export default function ProfilAdmin() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/admin/me", {
-          headers: { Authorization: `Bearer ${token}` }
-        });
+        const res = await axios.get(
+  `${process.env.REACT_APP_API_URL}/api/admin/me`,
+  {
+    headers: { Authorization: `Bearer ${token}` }
+  }
+);
 
         if (res.data?.success) {
           const user = cleanUser(res.data.user);
@@ -109,7 +112,7 @@ export default function ProfilAdmin() {
       if (formData.avatarFile) data.append("avatar", formData.avatarFile);
 
       const res = await axios.put(
-        "http://localhost:5000/api/admin/profile/update",
+  `${process.env.REACT_APP_API_URL}/api/admin/profile/update`,
         data,
         {
           headers: {
@@ -141,7 +144,7 @@ export default function ProfilAdmin() {
 
     try {
       const res = await axios.put(
-        "http://localhost:5000/api/admin/change-password",
+  `${process.env.REACT_APP_API_URL}/api/admin/change-password`,
         passwordData,
         {
           headers: { Authorization: `Bearer ${token}` }
