@@ -218,7 +218,7 @@ const handleDelete = async (id) => {
 
   const tableRouteMap = {
     reclamations: "chargeback",
-    cartebloquees: "cartesbloquees", 
+    cartesbloquees: "cartesbloquees", 
     CarteAvale: "carteavale",
     clients: "clients",
     agents: "users",
