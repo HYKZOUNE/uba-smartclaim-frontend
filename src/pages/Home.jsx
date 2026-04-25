@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-//import './Home.css';
+import './Home.css';
 import logo from '../assets/uba_logo.png';
 import slide1 from '../assets/slide1.jpg';
 import slide2 from '../assets/slide2.jpg';
