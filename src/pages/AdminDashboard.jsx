@@ -305,7 +305,7 @@ const handleDelete = async (id) => {
   let url = "";
   switch(type){
     case "chargeback": url = `/api/admin/chargeback/${id}/decision`; break;
-    case "cartebloquees": url = `/api/admin/cartesbloquees/${id}/decision`; break;
+    case "cartesbloquees": url = `/api/admin/cartesbloquees/${id}/decision`; break;
     case "CarteAvale": url = `/api/admin/carteavale/${id}/decision`; break;
     default: return;
   }
