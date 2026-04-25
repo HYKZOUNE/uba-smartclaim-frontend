@@ -24,9 +24,9 @@ export default function Rapport() {
       case "CHARGEBACK":
         return { "en-attente": "EN ATTENTE", "valide": "VALIDÉ", "rejete": "REJETÉ", "paye": "PAYÉ" }[status] || status;
       case "CARTE_AVALEE":
-        return status === "retirée" ? "RETRAIT" : status;
-      case "CARTE_BLOQUEE":
-        return status === "bloquer" ? "BLOQUÉ" : status;
+        return status === "retirée" ? " RETRAIT" : status;
+      case "CARTES_BLOQUEES":
+        return status === "bloquée" ? "BLOQUÉ" : status;
       default:
         return status;
     }
@@ -160,7 +160,7 @@ const exportExcel = () => {
           <option value="">Catégorie</option>
           <option value="CHARGEBACK">CHARGEBACK</option>
           <option value="CARTE_AVALEE">CARTE AVALÉE</option>
-          <option value="CARTE_BLOQUEE">CARTE BLOQUÉE</option>
+          <option value="CARTES_BLOQUEES">CARTE BLOQUÉE</option>
         </select>
         <select value={filters.status} onChange={e => setFilters(f => ({ ...f, status: e.target.value }))} disabled={!filters.categorie}>
           <option value="">Statut</option>
@@ -170,8 +170,17 @@ const exportExcel = () => {
             <option value="rejete">REJETÉ</option>
             <option value="paye">PAYÉ</option>
           </>}
-          {filters.categorie === "CARTE_AVALEE" && <option value="retirée">RETRAIT</option>}
-          {filters.categorie === "CARTE_BLOQUEE" && <option value="bloquer">BLOQUÉ</option>}
+
+          {filters.categorie === "CARTE_AVALEE" && <>
+          <option value="en-attente">EN ATTENTE</option> 
+          <option value="retirée">RETRAIT</option>
+          </>}
+
+          {filters.categorie === "CARTES_BLOQUEES" && <>
+          <option value="en-attente">EN ATTENTE</option>
+          <option value="bloquée">BLOQUÉ</option>
+          </>}
+
         </select>
         <button onClick={fetchRapport}>🔍 Filtrer</button>
         <button onClick={exportPDF}>📄 Export PDF</button>
