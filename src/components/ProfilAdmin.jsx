@@ -40,7 +40,7 @@ export default function ProfilAdmin() {
     avatar: user.avatar ?? ""
   });
 
-  // ================= FETCH     ALTER TABLE users ADD avatar VARCHAR(255);            et        =================
+  // ================= FETCH       =================
   useEffect(() => {
     const fetchProfile = async () => {
       try {
