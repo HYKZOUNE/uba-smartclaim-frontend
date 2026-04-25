@@ -211,13 +211,14 @@ const handleDecision = async (id, decision) => {
   };
 
   // ================== DELETE ==================
-// ================== DELETE ==================
 const handleDelete = async (id) => {
-  if (!window.confirm("Voulez-vous vraiment supprimer cet élément ?")) return;
+  if (!window.confirm("Voulez-vous vraiment supprimer ?")) return;
+
+  const token = localStorage.getItem("token");
 
   const tableRouteMap = {
     reclamations: "chargeback",
-    cartebloquees: "cartebloquees",
+    cartebloques: "cartesbloquees",
     CarteAvale: "carteavale",
     clients: "clients",
     agents: "users",
@@ -225,17 +226,11 @@ const handleDelete = async (id) => {
 
   const route = tableRouteMap[activeTable];
 
-  if (!route) {
-    alert("Suppression non supportée !");
-    return;
-  }
-
   try {
-    const token = localStorage.getItem("token");
-
     const url = `${process.env.REACT_APP_API_URL}/api/admin/${route}/${id}`;
 
     console.log("DELETE =>", url);
+    console.log("TOKEN =>", token);
 
     await axios.delete(url, {
       headers: {
@@ -247,8 +242,7 @@ const handleDelete = async (id) => {
     loadTable(activeTable);
 
   } catch (err) {
-    console.error("❌ DELETE ERROR:", err.response?.data || err.message);
-    showToast("Erreur suppression", "error");
+    console.error(err.response?.data || err.message);
   }
 };
 
