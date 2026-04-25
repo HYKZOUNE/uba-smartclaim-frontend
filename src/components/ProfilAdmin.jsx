@@ -144,7 +144,7 @@ export default function ProfilAdmin() {
 
     try {
       const res = await axios.put(
-  `${process.env.REACT_APP_API_URL}/api/admin/change-password`,
+  `${process.env.REACT_APP_API_URL}/api/admin/profile/change-password`,
         passwordData,
         {
           headers: { Authorization: `Bearer ${token}` }
