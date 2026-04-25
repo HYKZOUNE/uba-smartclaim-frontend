@@ -2,20 +2,10 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-
-  <!-- Responsive mobile -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-
-  <!-- Compatibilité -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-  <!-- Theme Android -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#d71920" />
 
   <title>UBA SmartClaim</title>
-
-  <!-- Tailwind -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
 
   <style>
     *{
@@ -24,27 +14,12 @@
       box-sizing:border-box;
     }
 
-    html, body {
+    html,body{
       width:100%;
       min-height:100%;
       overflow-x:hidden;
-      font-family: Arial, sans-serif;
+      font-family:Arial,sans-serif;
       background:#f8f9fa;
-    }
-
-    body{
-      -webkit-text-size-adjust:100%;
-      text-size-adjust:100%;
-    }
-
-    img{
-      max-width:100%;
-      height:auto;
-    }
-
-    input, button, select, textarea{
-      max-width:100%;
-      font-size:16px;
     }
 
     #root{
@@ -52,21 +27,19 @@
       min-height:100vh;
     }
 
-    /* Android / petits écrans */
-    @media (max-width:768px){
-      body{
-        font-size:14px;
-      }
-
-      #root{
-        padding:8px;
-      }
+    img{
+      max-width:100%;
+      height:auto;
     }
 
-    /* Grand écran PC */
-    @media (min-width:769px){
+    input,button,select,textarea{
+      max-width:100%;
+      font-size:16px;
+    }
+
+    @media (max-width:768px){
       #root{
-        width:100%;
+        padding:8px;
       }
     }
   </style>
