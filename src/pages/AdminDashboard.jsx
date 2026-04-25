@@ -108,7 +108,7 @@ const handleDecision = async (id, decision) => {
   // ================== TABLE COLUMNS ==================
   const tableColumns = {
     reclamations: ["id", "numero_dossier", "numero_compte", "telephone", "montant_transaction", "guichet", "localite", "transaction_date", "status"],
-    cartebloquees: ["id", "numero_dossier", "numero_carte", "numero_compte", "telephone", "guichet", "localite", "transaction_date", "status"],
+    cartesbloquees: ["id", "numero_dossier", "numero_carte", "numero_compte", "telephone", "guichet", "localite", "transaction_date", "status"],
     CarteAvale: ["id", "numero_dossier", "numero_carte", "numero_compte", "telephone", "guichet", "localite", "transaction_date", "status"],
     clients: ["id", "nom", "prenom", "email", "telephone", "numero_compte"],
     agents: ["id", "nom", "prenom", "email", "role"],
@@ -129,8 +129,8 @@ const handleDecision = async (id, decision) => {
   let url = "";
   switch (type) {
     case "reclamations": url = "/api/admin/chargeback/all"; break;
-    case "cartebloques":
-url = "/api/admin/cartes-bloquees";
+    case "cartebloquees":
+url = "/api/admin/cartesbloquees";
 break;
     case "CarteAvale": url = "/api/admin/carteavale"; break;
     case "clients": url = "/api/admin/clients"; break;
@@ -220,7 +220,7 @@ const handleDelete = async (id) => {
 
   const tableRouteMap = {
     reclamations: "chargeback",
-    cartebloques: "cartebloquees",
+    cartebloques: "cartesbloquees",
     CarteAvale: "carteavale",
     clients: "clients",
     agents: "users",
@@ -307,7 +307,7 @@ const handleDelete = async (id) => {
   let url = "";
   switch(type){
     case "chargeback": url = `/api/admin/chargeback/${id}/decision`; break;
-    case "cartebloquees": url = `/api/admin/cartebloquees/${id}/decision`; break;
+    case "cartebloquees": url = `/api/admin/cartesbloquees/${id}/decision`; break;
     case "CarteAvale": url = `/api/admin/carteavale/${id}/decision`; break;
     default: return;
   }
@@ -437,7 +437,7 @@ const handleDelete = async (id) => {
 <div className="vm-cards">
   {[
     { title: "Total Chargebacks", key: "reclamations", value: stats.totalReclamations },
-    { title: "Carte Bloquées", key: "cartebloquees", value: stats.totalCarteBloquees },
+    { title: "Cartes Bloquées", key: "cartesbloquees", value: stats.totalCarteBloquees },
     { title: "Cartes Avalées", key: "CarteAvale", value: stats.totalCarteAvale },
     { title: "Clients", key: "clients", value: stats.totalClients },
     { title: "Agents", key: "agents", value: stats.totalAgents },
