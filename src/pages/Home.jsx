@@ -5,7 +5,7 @@ import logo from '../assets/uba_logo.png';
 import slide1 from '../assets/slide1.jpg';
 import slide2 from '../assets/slide2.jpg';
 import slide3 from '../assets/slide3.jpg';
-import "./responsive.css";
+
 
 const Home = () => {
 
