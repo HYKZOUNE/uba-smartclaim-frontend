@@ -212,7 +212,7 @@ const handleDecision = async (id, decision) => {
 
   // ================== DELETE ==================
 const handleDelete = async (id) => {
-  if (!window.confirm("Voulez-vous vraiment supprimer ?")) return;
+  if (!window.confirm("Voulez-vous vraiment supprimer cet élément ?")) return;
 
   const token = localStorage.getItem("token");
 
@@ -225,6 +225,11 @@ const handleDelete = async (id) => {
   };
 
   const route = tableRouteMap[activeTable];
+
+  if (!route) {
+    showToast("Suppression non supportée", "error");
+    return;
+  }
 
   try {
     const url = `${process.env.REACT_APP_API_URL}/api/admin/${route}/${id}`;
@@ -242,7 +247,8 @@ const handleDelete = async (id) => {
     loadTable(activeTable);
 
   } catch (err) {
-    console.error(err.response?.data || err.message);
+    console.error("DELETE ERROR :", err.response?.data || err.message);
+    showToast("Erreur suppression", "error");
   }
 };
 
