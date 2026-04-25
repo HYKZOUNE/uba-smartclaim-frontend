@@ -44,7 +44,7 @@ export default function AdminDashboard() {
 
   const [newCounts] = useState({
     reclamations: 0,
-    cartebloquees: 0,
+    cartesbloquees: 0,
     carteavale: 0,
     clients: 0,
     agents: 0,
