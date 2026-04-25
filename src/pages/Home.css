@@ -432,3 +432,32 @@ body {
     flex: 1 1 100%;
   }
 }
+
+
+
+/* FIX MOBILE ANDROID FINAL */
+@media (max-width: 768px){
+
+  .feature-card{
+    margin:10px !important;
+    padding:15px !important;
+    transform:none !important;
+  }
+
+  .feature-card:hover{
+    transform:none !important;
+  }
+
+  .hero-slider{
+    height:250px;
+  }
+
+  .slide h2{
+    font-size:18px;
+  }
+
+  .slide p{
+    font-size:14px;
+  }
+
+}
