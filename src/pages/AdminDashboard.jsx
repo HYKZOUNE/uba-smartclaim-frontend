@@ -594,12 +594,12 @@ const handleDelete = async (id) => {
         </>
       );
 
-                case "cartebloquees":
+                case "cartesbloquees":
                   return (
                     <>
                       <button
   className="btn-small pay"
-  onClick={() => actionDecision(r.id, "carte est bien bloquée", "cartebloquees")}
+  onClick={() => actionDecision(r.id, "carte est bien bloquée", "cartesbloquees")}
   title="Bloquer"
 >
   Bloquée
