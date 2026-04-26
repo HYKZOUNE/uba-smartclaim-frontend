@@ -311,7 +311,7 @@ const exportPDF = async () => {
 
  try {
   const res = await axios.post(
-    `${process.env.REACT_APP_API_URL}/api/export-pdf`,
+    `${process.env.REACT_APP_API_URL}/api/pdf/export-pdf`,
     {
       dossiers: data
     },
