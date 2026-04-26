@@ -31,15 +31,15 @@ const Toast = ({ message, type, onClose }) => (
 // ================== AGENT DASHBOARD ==================
 export default function AgentDashboard() {
   const [stats, setStats] = useState({
-    totalReclamations: 0,
-    totalClients: 0,
-    totalCarteBloquees: 0,
-    totalCarteAvale: 0,
-    enAttente: 0,
-    validees: 0,
-    rejetees: 0,
-    payee: 0,
-  });
+ totalReclamations:0,
+ totalClients:0,
+ totalCarteBloquees:0,
+ totalCarteAvale:0,
+ attente:0,
+ validees:0,
+ rejetees:0,
+ paye:0
+});
   const [view, setView] = useState("dashboard");
   const [openMenu, setOpenMenu] = useState(null);
   const [agent, setAgent] = useState({ prenom: "", nom: "", email: "" });
@@ -441,21 +441,19 @@ const actionDecisionCarteAvale = async (id) => {
 };
 
 
+// ================== SEARCH & PAGINATION ==================
+const dataSource = allData;
 
-  // ================== SEARCH & PAGINATION ==================
-const dataSource =
-  activeTable === "reclamations"
-    ? chargebacks
-    : activeTable === "cartebloquees"
-    ? cartesBloquees
-    : [];
-
-
-const filtered = dataSource.filter(item =>
+const filtered = dataSource.filter((item) =>
   JSON.stringify(item).toLowerCase().includes(search.toLowerCase())
 );
-  const totalPages = Math.ceil(filtered.length / perPage);
-  const paginated = filtered.slice((page-1)*perPage, page*perPage);
+
+const totalPages = Math.ceil(filtered.length / perPage) || 1;
+
+const paginated = filtered.slice(
+  (page - 1) * perPage,
+  page * perPage
+);
 
   // ================== RENDER ACTION BUTTONS ==================
   const renderActions = (r) => {
