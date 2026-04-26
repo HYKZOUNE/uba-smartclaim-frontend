@@ -29,9 +29,9 @@ export default function ClientEdit1() {
   useEffect(() => {
     const fetchClient = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/api/agent/users/${id}`
-        );
+  const res = await axios.get(
+    `${process.env.REACT_APP_API_URL}/api/agent/users/${id}`
+  );
         setForm(res.data);
       } catch (err) {
         console.error(err);
