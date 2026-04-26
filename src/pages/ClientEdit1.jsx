@@ -56,11 +56,11 @@ export default function ClientEdit1() {
     e.preventDefault();
     if (!validate()) return;
 
-    try {
-      await axios.put(
-        `http://localhost:5000/api/agent/users/${id}`,
-        form
-      );
+   try {
+  await axios.put(
+    `${process.env.REACT_APP_API_URL}/api/agent/users/${id}`,
+    form
+  );
 
       toast.success("Client modifié avec succès", {
         autoClose: 2000,
