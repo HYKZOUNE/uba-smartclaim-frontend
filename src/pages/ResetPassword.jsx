@@ -14,10 +14,10 @@ const ResetPassword = () => {
 
     try {
 
-     const res = await api.post(
-  `/api/clients/reset-password/${token}`,
+     const res = axios.post(
+  "https://uba-smartclaim-api.onrender.com/api/clients/reset-password/" + token,
   { mot_de_passe: password }
-);   
+);
 
       setMessage(res.data.message);
     } catch (err) {
