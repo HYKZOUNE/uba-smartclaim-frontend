@@ -48,12 +48,15 @@ export default function ClientEdit() {
     setLoading(true);
 
     try {
-      const token = localStorage.getItem("token");
-      await axios.put(
-        `http://localhost:5000/api/admin/clients/${id}`,
-        form,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+  const token = localStorage.getItem("token");
+
+  await axios.put(
+    `${process.env.REACT_APP_API_URL}/api/admin/clients/${id}`,
+    form,
+    {
+      headers: { Authorization: `Bearer ${token}` }
+    }
+  );
       alert("Client mis à jour avec succès !");
       // redirection facultative, uniquement après validation
       navigate("/admin/dashboard");
