@@ -22,10 +22,14 @@ export default function ClientEdit() {
   useEffect(() => {
     const fetchClient = async () => {
       try {
-        const token = localStorage.getItem("token");
-        const res = await axios.get(`http://localhost:5000/api/admin/clients/${id}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+  const token = localStorage.getItem("token");
+
+  const res = await axios.get(
+    `${process.env.REACT_APP_API_URL}/api/admin/clients/${id}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
         setForm({ ...res.data, mot_de_passe: "", confirmation_mot_de_passe: "" });
       } catch (err) {
         console.error(err);
